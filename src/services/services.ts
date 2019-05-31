@@ -1,19 +1,41 @@
+import { string } from "prop-types";
 
-interface Thingys {
-    data: string[];
+
+
+
+export interface Todo {
+    id: string;
+    value: string;
 }
 
-export const getThingys = async (): Promise<Thingys> => {
+const initialTodos: Todo[] = [
+    {
+        id: "1",
+        value: "Hello",
+    }, {
+        id: "2",
+        value: "World",
+    }
+]; 
+
+
+
+export const getTodos = async (): Promise<Todo[]> => {
     return await new Promise((res, rej) => {
         setTimeout(() => {
-
-            res({
-                data: [
-                    "andy",
-                    "bob",
-                    "charlie"
-                ]
-            });
+            res(initialTodos);
         }, 2000)
     });
 }
+
+export const postTodo = async (value: string): Promise<Todo> => {
+    return await new Promise((res, rej) => {
+        setTimeout(() => {
+            res({
+                id: `${Math.random()}`, 
+                value, 
+            });
+        }, 2000)
+    }); 
+}
+
